@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kotlinflutterecommerce/views/screens/authenticationscreens/registerscreen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -178,8 +179,13 @@ class LoginScreen extends StatelessWidget {
                         letterSpacing: 2,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {},
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return  RegisterScreen();
+                        }));
+                      },
                       child: Text(
                         'Sign Up',
                         style: GoogleFonts.getFont(
