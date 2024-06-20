@@ -1,8 +1,24 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kotlinflutterecommerce/views/screens/authenticationscreens/loginscreen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+            apiKey: 'AIzaSyDFK4OoqY00NJhe4sm6aLJ57YUTnRWNYMI',
+            appId: '1:129920843449:android:11e8968ebfbb3c17f42568',
+            messagingSenderId: '129920843449',
+            projectId: 'kotlinflutterecommerce',
+            storageBucket: 'gs://kotlinflutterecommerce.appspot.com',
+          ),
+        )
+      : await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -23,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  LoginScreen(),
+      home: LoginScreen(),
     );
   }
 }

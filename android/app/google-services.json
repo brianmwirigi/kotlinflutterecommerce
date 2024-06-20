@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "129920843449",
+    "project_id": "kotlinflutterecommerce",
+    "storage_bucket": "kotlinflutterecommerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129920843449:android:11e8968ebfbb3c17f42568",
+        "android_client_info": {
+          "package_name": "com.example.kotlinflutterecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFK4OoqY00NJhe4sm6aLJ57YUTnRWNYMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
