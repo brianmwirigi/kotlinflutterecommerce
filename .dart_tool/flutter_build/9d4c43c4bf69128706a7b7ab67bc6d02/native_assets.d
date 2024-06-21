@@ -1,1 +1,0 @@
- /home/mwirigi/kotlinflutterecommerce/.dart_tool/flutter_build/9d4c43c4bf69128706a7b7ab67bc6d02/native_assets.yaml: 

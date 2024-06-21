@@ -7,17 +7,17 @@ import 'package:kotlinflutterecommerce/views/screens/authenticationscreens/login
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Platform.isAndroid
-      ? await Firebase.initializeApp(
-          options: const FirebaseOptions(
-            apiKey: 'AIzaSyDFK4OoqY00NJhe4sm6aLJ57YUTnRWNYMI',
-            appId: '1:129920843449:android:11e8968ebfbb3c17f42568',
-            messagingSenderId: '129920843449',
-            projectId: 'kotlinflutterecommerce',
-            storageBucket: 'gs://kotlinflutterecommerce.appspot.com',
-          ),
-        )
-      : await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      name: 'kotlinflutterecommerce',
+      options: Platform.isAndroid
+          ? const FirebaseOptions(
+              apiKey: 'AIzaSyDFK4OoqY00NJhe4sm6aLJ57YUTnRWNYMI',
+              appId: '1:129920843449:android:11e8968ebfbb3c17f42568',
+              messagingSenderId: '129920843449',
+              projectId: 'kotlinflutterecommerce',
+              storageBucket: 'gs://kotlinflutterecommerce.appspot.com',
+            )
+          : null);
 
   runApp(const MyApp());
 }

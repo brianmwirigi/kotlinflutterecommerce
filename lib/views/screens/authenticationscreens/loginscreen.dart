@@ -7,6 +7,11 @@ class LoginScreen extends StatelessWidget {
   //constructor is removed that is used to pass the data from one screen to another
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  //late is used because we expect input from user
+  late String email;
+  late String password;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
