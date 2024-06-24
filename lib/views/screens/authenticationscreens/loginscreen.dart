@@ -11,7 +11,6 @@ class LoginScreen extends StatelessWidget {
   late String email;
   late String password;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +63,9 @@ class LoginScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(5),
                     child: TextFormField(
+                      onChanged: (value) {
+                        email = value;
+                      },
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter your email';
@@ -112,6 +114,9 @@ class LoginScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(5),
                     child: TextFormField(
+                      onChanged: (value) {
+                        password = value;
+                      },
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter your password';
