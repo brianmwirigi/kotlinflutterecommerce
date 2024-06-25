@@ -6,3 +6,4 @@ class AuthenticationController {
     return email == '' && password == '';
   }
 }
+
