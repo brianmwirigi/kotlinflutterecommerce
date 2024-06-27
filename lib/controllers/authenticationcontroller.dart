@@ -5,5 +5,7 @@ class AuthenticationController {
     await Future.delayed(Duration(seconds: 1));
     return email == '' && password == '';
   }
+  
 }
+
 
