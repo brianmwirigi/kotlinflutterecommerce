@@ -1,12 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kotlinflutterecommerce/controllers/authenticationcontroller.dart';
 import 'package:kotlinflutterecommerce/views/screens/authenticationscreens/loginscreen.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final AuthenticationController _authenticationController =
+      AuthenticationController();
+
   late String email;
+
   late String username;
+
   late String password;
+
+  registerUser() async {
+    BuildContext localContext = context;
+    String res = await _authenticationController.registerNewUser(
+        email, username, password);
+    if (res == 'Success') {
+      Future.delayed(Duration.zero, () {
+        Navigator.push(
+          localContext,
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+        );
+        ScaffoldMessenger.of(localContext).showSnackBar(
+          const SnackBar(
+            content: Text('Registration Successful'),
+          ),
+        );
+      });
+    } else {
+      ScaffoldMessenger.of(localContext).showSnackBar(
+        SnackBar(
+          content: Text(res),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -218,12 +257,7 @@ class RegisterScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ),
-                          );
+                          registerUser();
                         }
                       },
                       child: Container(

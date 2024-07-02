@@ -1,15 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kotlinflutterecommerce/controllers/authenticationcontroller.dart';
 import 'package:kotlinflutterecommerce/views/screens/authenticationscreens/registerscreen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   //form key to make sure the form is filled correctly
-  //constructor is removed that is used to pass the data from one screen to another
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthenticationController _authenticationController =
+      AuthenticationController();
 
   //late is used because we expect input from user
   late String email;
+
   late String password;
+
+  loginUser() async {
+    BuildContext localContext = context;
+    String res = await _authenticationController.loginUser(email, password);
+    if (res == 'Success') {
+      Future.delayed(Duration.zero, () {
+        Navigator.push(
+          localContext,
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+        );
+        ScaffoldMessenger.of(localContext).showSnackBar(
+          const SnackBar(
+            content: Text('Login Successful'),
+          ),
+        );
+      });
+    } else {
+      ScaffoldMessenger.of(localContext).showSnackBar(
+        SnackBar(
+          content: Text(res),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -170,10 +204,7 @@ class LoginScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return RegisterScreen();
-                          }));
+                          loginUser();
                         }
                       },
                       child: Container(
