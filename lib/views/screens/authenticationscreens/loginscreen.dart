@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kotlinflutterecommerce/controllers/authenticationcontroller.dart';
 import 'package:kotlinflutterecommerce/views/screens/authenticationscreens/registerscreen.dart';
+import 'package:kotlinflutterecommerce/views/screens/mainscreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late String email;
 
   late String password;
+  bool _isPasswordHidden = true;
 
   loginUser() async {
     BuildContext localContext = context;
@@ -27,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(
           localContext,
           MaterialPageRoute(
-            builder: (context) => LoginScreen(),
+            builder: (context) => MainScreen(),
           ),
         );
         ScaffoldMessenger.of(localContext).showSnackBar(
@@ -157,6 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                         return null;
                       },
+                      obscureText: _isPasswordHidden,
                       decoration: InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
@@ -168,8 +171,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.w600,
                           letterSpacing: 2,
                         ),
-                        suffixIcon: const Icon(
-                          Icons.visibility,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordHidden
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordHidden = !_isPasswordHidden;
+                            });
+                          },
                         ),
                         prefixIcon: const Align(
                           widthFactor: 1,
@@ -205,6 +217,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
                           loginUser();
+                        } else {
+                          print('Failed');
                         }
                       },
                       child: Container(
