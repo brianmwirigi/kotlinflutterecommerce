@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:kotlinflutterecommerce/views/screens/navigationscreen/cartscreen.dart';
+import 'package:kotlinflutterecommerce/views/screens/navigationscreen/favouritescreen.dart';
+import 'package:kotlinflutterecommerce/views/screens/navigationscreen/homescreen.dart';
+import 'package:kotlinflutterecommerce/views/screens/navigationscreen/profilescreen.dart';
+import 'package:kotlinflutterecommerce/views/screens/navigationscreen/storescreen.dart';
 
 class MainScreen extends StatefulWidget {
-
-
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
-int _selectedIndex = 0;
-
 class _MainScreenState extends State<MainScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = <Widget>[
+    const HomeScreen(),
+    const FavouriteScreen(),
+    const StoreScreen(),
+    const CartScreen(),
+    const ProfileScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
             icon: Icon(
@@ -73,12 +84,14 @@ class _MainScreenState extends State<MainScreen> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.red,
-        onTap: (index) {
+        unselectedItemColor: Colors.black,
+        onTap: (value) {
           setState(() {
-            _selectedIndex = index;
+            _selectedIndex = value;
           });
         },
       ),
+      body: _pages[_selectedIndex],
     );
   }
 }
