@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kotlinflutterecommerce/controllers/authenticationcontroller.dart';
 import 'package:kotlinflutterecommerce/views/screens/authenticationscreens/loginscreen.dart';
+import 'package:kotlinflutterecommerce/views/screens/mainscreen.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -257,7 +258,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: InkWell(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          registerUser();
+                          MainScreen();
                         }
                       },
                       child: Container(
