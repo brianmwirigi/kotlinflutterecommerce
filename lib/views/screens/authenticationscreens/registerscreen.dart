@@ -15,6 +15,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final AuthenticationController _authenticationController =
       AuthenticationController();
 
+  bool _isLoading = false;
+
   late String email;
 
   late String username;
@@ -23,6 +25,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   registerUser() async {
     BuildContext localContext = context;
+    setState(() {
+      _isLoading = true;
+    });
     String res = await _authenticationController.registerNewUser(
         email, username, password);
     if (res == 'Success') {
@@ -40,6 +45,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         );
       });
     } else {
+      setState(() {
+        _isLoading = false;
+      });
       ScaffoldMessenger.of(localContext).showSnackBar(
         SnackBar(
           content: Text(res),
@@ -271,16 +279,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: Stack(
                           children: [
                             Center(
-                              child: Text(
-                                'Sign Up',
-                                style: GoogleFonts.getFont(
-                                  'Roboto',
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 2,
-                                ),
-                              ),
+                              child: _isLoading
+                                  ? const CircularProgressIndicator(
+                                      color: Colors.white,
+                                    )
+                                  : Text(
+                                      'Sign Up',
+                                      style: GoogleFonts.getFont(
+                                        'Roboto',
+                                        color: Colors.white,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 2,
+                                      ),
+                                    ),
                             )
                           ],
                         ),
