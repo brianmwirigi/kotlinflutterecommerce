@@ -19,9 +19,15 @@ class _LoginScreenState extends State<LoginScreen> {
   late String email;
 
   late String password;
+
+  bool _isLoading = false;
+
   bool _isPasswordHidden = true;
 
   loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
     BuildContext localContext = context;
     String res = await _authenticationController.loginUser(email, password);
     if (res == 'Success') {
@@ -231,7 +237,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Stack(
                           children: [
                             Center(
-                              child: Text(
+                              child:
+
+                              Text(
                                 'Sign In',
                                 style: GoogleFonts.getFont(
                                   'Roboto',

@@ -23,6 +23,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   late String password;
 
+  bool _isPasswordHidden = true;
+
   registerUser() async {
     BuildContext localContext = context;
     setState(() {
@@ -219,6 +221,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }
                         return null;
                       },
+                      obscureText: _isPasswordHidden,
                       decoration: InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
@@ -230,8 +233,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           fontWeight: FontWeight.w600,
                           letterSpacing: 2,
                         ),
-                        suffixIcon: const Icon(
-                          Icons.visibility,
+                        suffixIcon: IconButton( // Step 2
+                          icon: Icon(
+                            _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordHidden = !_isPasswordHidden;
+                            });
+                          },
                         ),
                         prefixIcon: const Align(
                           widthFactor: 1,
@@ -266,7 +276,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: InkWell(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          MainScreen();
+                          registerUser();
                         }
                       },
                       child: Container(
