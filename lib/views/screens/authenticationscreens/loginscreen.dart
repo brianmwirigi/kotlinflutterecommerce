@@ -45,6 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       });
     } else {
+      setState(() {
+        _isLoading = false;
+      });
       ScaffoldMessenger.of(localContext).showSnackBar(
         SnackBar(
           content: Text(res),
@@ -237,18 +240,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Stack(
                           children: [
                             Center(
-                              child:
-
-                              Text(
-                                'Sign In',
-                                style: GoogleFonts.getFont(
-                                  'Roboto',
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 2,
-                                ),
-                              ),
+                              child: _isLoading
+                                  ? const CircularProgressIndicator(
+                                      color: Colors.white,
+                                    )
+                                  : Text(
+                                      'Sign In',
+                                      style: GoogleFonts.getFont(
+                                        'Roboto',
+                                        color: Colors.white,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 2,
+                                      ),
+                                    ),
                             )
                           ],
                         ),
