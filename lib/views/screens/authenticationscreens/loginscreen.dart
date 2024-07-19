@@ -48,11 +48,13 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         _isLoading = false;
       });
-      ScaffoldMessenger.of(localContext).showSnackBar(
-        SnackBar(
-          content: Text(res),
-        ),
-      );
+      Future.delayed(Duration.zero, () {
+        ScaffoldMessenger.of(localContext).showSnackBar(
+          SnackBar(
+            content: Text(res),
+          ),
+        );
+      });
     }
   }
 

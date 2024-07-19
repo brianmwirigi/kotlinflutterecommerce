@@ -30,6 +30,18 @@ class AuthenticationController {
       res = 'Success';
       Future.delayed(const Duration(seconds: 2));
       return 'Success';
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'Weak-Password') {
+        res = 'Weak Password';
+      } else if (e.code == 'email-already-in-use') {
+        res = 'Email already in use';
+      } else if (e.code == 'wrong-password') {
+        res = 'Wrong Password';
+      } else if (e.code == 'email-format-error') {
+        res = 'Email format error';
+      } else {
+        res = e.toString();
+      }
     } catch (e) {
       res = e.toString();
     }
@@ -45,6 +57,14 @@ class AuthenticationController {
       res = 'Success';
       Future.delayed(const Duration(seconds: 2));
       return 'Success';
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        res = 'No user found for that email';
+      } else if (e.code == 'wrong-password') {
+        res = 'Wrong Password provided';
+      } else {
+        res = e.toString();
+      }
     } catch (e) {
       res = e.toString();
     }

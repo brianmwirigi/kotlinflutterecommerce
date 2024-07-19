@@ -37,7 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Navigator.push(
           localContext,
           MaterialPageRoute(
-            builder: (context) => LoginScreen(),
+            builder: (context) => MainScreen(),
           ),
         );
         ScaffoldMessenger.of(localContext).showSnackBar(
@@ -50,11 +50,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
       setState(() {
         _isLoading = false;
       });
-      ScaffoldMessenger.of(localContext).showSnackBar(
-        SnackBar(
-          content: Text(res),
-        ),
-      );
+      Future.delayed(Duration.zero, () {
+        ScaffoldMessenger.of(localContext).showSnackBar(
+          SnackBar(
+            content: Text(res),
+          ),
+        );
+      });
     }
   }
 
@@ -233,9 +235,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           fontWeight: FontWeight.w600,
                           letterSpacing: 2,
                         ),
-                        suffixIcon: IconButton( // Step 2
+                        suffixIcon: IconButton(
                           icon: Icon(
-                            _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                            _isPasswordHidden
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                           ),
                           onPressed: () {
                             setState(() {
