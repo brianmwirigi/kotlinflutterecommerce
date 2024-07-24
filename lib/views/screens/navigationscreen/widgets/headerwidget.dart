@@ -9,19 +9,12 @@ class HeaderWidget extends StatelessWidget {
       //code to make the header responsive using media query
       width: MediaQuery.of(context).size.width,
       height:
-          MediaQuery.of(context).size.height * 0.3, //30% of the screen height
+          MediaQuery.of(context).size.height * 0.1, //30% of the screen height
 
       child: Stack(
         children: [
-          Image.asset(
-            'assets/images/mukenaLogo.jpeg',
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.1,
-            fit: BoxFit.scaleDown,
-          ),
           Positioned(
             left: 10,
-            top: 100,
             right: 150,
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -52,11 +45,8 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
           ),
-
-
           Positioned(
             left: 290,
-            top: 100,
             child: Material(
               type: MaterialType.transparency,
               child: InkWell(
@@ -79,7 +69,6 @@ class HeaderWidget extends StatelessWidget {
           ),
           Positioned(
               left: 350,
-              top: 100,
               child: Material(
                 type: MaterialType.transparency,
                 child: InkWell(

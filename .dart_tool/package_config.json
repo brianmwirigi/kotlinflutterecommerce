@@ -158,6 +158,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "get",
+      "rootUri": "file:///home/mwirigi/.pub-cache/hosted/pub.dev/get-4.6.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "google_fonts",
       "rootUri": "file:///home/mwirigi/.pub-cache/hosted/pub.dev/google_fonts-6.2.1",
       "packageUri": "lib/",
@@ -356,7 +362,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-07-17T12:33:06.671241Z",
+  "generated": "2024-07-24T13:07:50.478825Z",
   "generator": "pub",
   "generatorVersion": "3.4.3",
   "flutterRoot": "file:///home/mwirigi/snap/flutter/common/flutter",
