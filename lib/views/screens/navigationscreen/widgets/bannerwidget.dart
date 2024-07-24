@@ -19,7 +19,7 @@ class _BannerWidgetState extends State<BannerWidget> {
       padding: const EdgeInsets.all(10),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.2,
+        height: MediaQuery.of(context).size.height * 0.3,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -63,12 +63,33 @@ class _BannerWidgetState extends State<BannerWidget> {
                             fit: BoxFit.contain),
                       );
                     },
-                  )
+                  ),
+                  _buildPageIndicator(snapshot.data!.length),
                 ],
               );
             }
           },
         ),
+      ),
+    );
+  }
+
+  Widget _buildPageIndicator(int pageCount) {
+    return Container(
+      margin: const EdgeInsets.all(20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(pageCount, (index) {
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 5),
+            height: 10,
+            width: 10,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: index == 0 ? Colors.red : Colors.grey,
+            ),
+          );
+        }),
       ),
     );
   }
