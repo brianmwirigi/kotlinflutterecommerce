@@ -1,5 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kotlinflutterecommerce/controllers/bannercontroller.dart';
 
@@ -19,7 +18,7 @@ class _BannerWidgetState extends State<BannerWidget> {
       padding: const EdgeInsets.all(10),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.3,
+        height: MediaQuery.of(context).size.height * 0.2,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -45,7 +44,7 @@ class _BannerWidgetState extends State<BannerWidget> {
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return const Center(
                 child: Text(
-                  'No data found',
+                  'No banner found',
                   style: TextStyle(fontSize: 18, color: Colors.grey),
                 ),
               );
@@ -57,10 +56,15 @@ class _BannerWidgetState extends State<BannerWidget> {
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.network(snapshot.data![index],
-                            fit: BoxFit.contain),
+                      return CachedNetworkImage(
+                        imageUrl: snapshot.data![index],
+                        fit: BoxFit.contain,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(
+                          color: Colors.red,
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       );
                     },
                   ),
