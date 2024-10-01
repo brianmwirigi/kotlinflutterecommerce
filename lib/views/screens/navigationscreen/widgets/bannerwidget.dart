@@ -47,6 +47,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                   'No banner found',
                   style: TextStyle(fontSize: 18, color: Colors.grey),
                 ),
+                //
               );
             } else {
               return Stack(
